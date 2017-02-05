@@ -1,6 +1,6 @@
 <template>
   <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="100">
-      <a v-for="data in datas" :href="data.url " target="view_window">
+      <a v-for="data in datas" :href="data.url?  data.url:data.href" target="view_window">
          <v-card :data="data" ></v-card>
       </a>
   </div>
@@ -42,7 +42,7 @@
         }else{
           this.$http.get(`https://route.showapi.com/967-1?showapi_appid=31583&showapi_timestamp=${formatterDateTime()}&showapi_sign=4840f5b30e9245df968e100c24dd6ab6`).then((response) => {
             console.log(response);
-            this.datas = this.datas.concat(response.body.showapi_res_body.Headline);
+            this.datas = this.datas.concat(response.body.showapi_res_body.Information_list);
             console.log(this.datas);
             this.busy = false;
             this.$nextTick(() => {
