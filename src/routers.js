@@ -70,6 +70,14 @@ const routers = [{
     meta: {
       requiresAuth: true
     }
+  }, {
+    path: '/zhihu',
+    name: 'zhihu',
+    component(resolve) {
+      require.ensure(['./components/zhihu/zhihu.vue'], () => {
+        resolve(require('./components/zhihu/zhihu.vue'));
+      });
+    }
   }]
 }, {
   path: '/wecome',

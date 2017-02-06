@@ -15,7 +15,8 @@ const state = {
   'menus': uz.NAME_TITILE,
   'menuShow': false,
   'loadingShow': false,
-  'news': 5
+  'news': 5,
+  themes: []
 };
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
 const mutations = {
@@ -32,6 +33,9 @@ const mutations = {
   },
   UPDATE_NEWS(state) {
     state.news = 0;
+  },
+  SET_THEMES(state, arr) {
+    state.themes = arr
   }
 };
 

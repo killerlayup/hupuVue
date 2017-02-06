@@ -1,1 +1,1 @@
-export const NAME_TITILE = ['welfare', 'day', 'android', 'ios', 'web', 'hupu'];
+export const NAME_TITILE = ['welfare', 'day', 'android', 'ios', 'web', 'hupu', 'zhihu'];

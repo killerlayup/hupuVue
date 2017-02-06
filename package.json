@@ -18,7 +18,9 @@
     "vue-lazyload": "^1.0.0-rc7",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1",
-    "vuex": "^2.1.1"
+    "vuex": "^2.1.1",
+    "leanengine": "^0.4.0",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

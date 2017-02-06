@@ -9,7 +9,7 @@ import {
   loadFromlLocal
 } from './common/js/store'; // 公共方法：本地缓存
 import 'common/css/index.styl'; // 引入公共样式
-
+import CovLocalDB from './util'
 // 注册组件 插件使用
 Vue.use(infiniteScroll);
 Vue.use(VueRouter);
@@ -21,6 +21,32 @@ Vue.use(VueLazyload, {
   loading: require('./assets/loading.gif'),
   attempt: 1
 });
+
+const IMG_MAP = new CovLocalDB('vue-zhihu-img')
+  //图片缓存
+Vue.prototype.$covImg = (self, uri, callback) => {
+  if (IMG_MAP.get(uri)) {
+    return callback(IMG_MAP.get(uri))
+  }
+
+  let data = window.btoa(uri.split('').reverse().join(''))
+  self.$http.get(window.location.origin + '/imagebox?type=rev-64&data=' + data)
+    .then(response => {
+      if (response.data.code === 200) {
+        IMG_MAP.set(uri, response.data.data.url)
+        callback(response.data.data.url)
+      } else {
+        console.log(response.data.message)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+Vue.prototype.$Api = (url) => {
+  return window.location.origin + '/readapi?uri=' + url
+}
+
 const router = new VueRouter({
   'linkActiveClass': 'active',
   routes // （缩写）相当于 routes: routes
